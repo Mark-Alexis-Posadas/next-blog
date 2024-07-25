@@ -5,6 +5,7 @@ export const useToggle = () => {
 
   const handleSetToggle = () => {
     setToggle((prevToggle) => !prevToggle);
+    document.body.classList.toggle("dark");
   };
 
   return { toggle, handleSetToggle };
