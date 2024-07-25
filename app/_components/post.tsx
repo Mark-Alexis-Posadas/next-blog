@@ -1,6 +1,11 @@
 import React from "react";
 import { PostTypes } from "../_types/post";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+
 export default function Post({
+  id,
   title,
   author,
   content,
@@ -8,21 +13,21 @@ export default function Post({
   likes,
   comments,
 }: PostTypes) {
+  console.log(id);
   return (
-    <li className="p-2 rounded bg-slate-100 shadow-md">
-      <h1 className="text-md font-bold">{title}</h1>
-      <span>{author}</span>
-      <p>{content}</p>
-      <span>{date}</span>
-      <span>{likes}</span>
-      <ul>
-        {comments.map((item, index) => (
-          <li key={index}>
-            <h2>{item.user}</h2>
-            <p>{item.comment}</p>
-          </li>
-        ))}
-      </ul>
+    <li className="p-2 rounded bg-slate-100 shadow-md flex flex-col">
+      <Link href={`/${id}`}>
+        <h1 className="text-md font-bold">{title}</h1>
+        <span className="text-sm text-gray-400">{author}</span>
+        <p className="my-3 text-sm">{content}</p>
+        <div className="flex items-center gap-3 mt-auto">
+          <span className="text-sm text-gray-400">{date}</span>
+          <span>
+            <FontAwesomeIcon icon={faHeart} className="mr-1" />
+            {likes}
+          </span>
+        </div>
+      </Link>
     </li>
   );
 }

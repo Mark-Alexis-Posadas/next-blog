@@ -12,6 +12,7 @@ export default function Home() {
             const { id, title, author, content, date, likes, comments } = post;
             return (
               <Post
+                id={id}
                 key={id}
                 title={title}
                 author={author}
